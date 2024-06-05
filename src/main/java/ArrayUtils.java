@@ -1,13 +1,12 @@
-import java.lang.reflect.Array;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ArrayUtils {
-    public static <T> T[] filter(T[] array, Filter filter, Class<T> tClass) {
-        T[] filteredArray = (T[]) Array.newInstance(tClass, array.length);
-
-        for (int i = 0; i < array.length; i++) {
-            filteredArray[i] = (T) filter.apply(array[i]);
+    public static <T> Map<T, Integer> countElements(T[] array) {
+        Map<T, Integer> counts = new HashMap<>();
+        for (T element : array) {
+            counts.put(element, counts.getOrDefault(element, 0) + 1);
         }
-
-        return filteredArray;
+        return counts;
     }
 }
